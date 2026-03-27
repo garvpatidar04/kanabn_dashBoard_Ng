@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalserviceService } from '../modalservice.service';
 import { TaskdbService } from '../taskdb.service';
 
@@ -13,9 +13,9 @@ export class ModalComponent {
   isOpen: boolean = false;
 
   taskForm = new FormGroup({
-    title : new FormControl(),
-    desc : new FormControl()
-  })
+    title : new FormControl('', [Validators.required, Validators.minLength(2)]),
+    desc : new FormControl('', [Validators.required])
+  });
 
   constructor(private modalservice: ModalserviceService, private taskdb: TaskdbService){ 
 
