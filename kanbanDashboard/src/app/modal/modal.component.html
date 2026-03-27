@@ -1,16 +1,16 @@
 <div class="container" (click)="triggerModal()" *ngIf="isOpen">
     <div class="form-wrapper" (click)="$event.stopPropagation()">
         <h3>Task Info</h3>
-        <form action="" class="form">
+        <form class="form" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
             <div class="titletext">
                 <label for="title">Title</label>
-                <input type="text" id="title">
+                <input type="text" id="title" formControlName="title">
             </div>
             <div class="desctext">
                 <label for="desc">Description</label>
-                <input type="text" id="desc">
+                <input type="text" id="desc" formControlName="desc">
             </div>
-            <button>Add</button>
+            <button type="submit">Add</button>
         </form>
     </div>
 </div>

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { TaskComponent } from './task/task.component';
 import { ColumnComponent } from './column/column.component';
 import { ModalComponent } from './modal/modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ModalComponent } from './modal/modal.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
