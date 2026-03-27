@@ -1,5 +1,5 @@
-<div class="container" (click)="mousehit()" *ngIf="isOpen">
-    <div class="form-wrapper">
+<div class="container" (click)="triggerModal()" *ngIf="isOpen">
+    <div class="form-wrapper" (click)="$event.stopPropagation()">
         <h3>Task Info</h3>
         <form action="" class="form">
             <div class="titletext">
