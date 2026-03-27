@@ -1,1 +1,4 @@
-<p>task works!</p>
+<div class="taskwrapper" *ngIf="title">
+    <h3>{{title | uppercase}}</h3>
+    <p>{{desc}}</p>
+</div>

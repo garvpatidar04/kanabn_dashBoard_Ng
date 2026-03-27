@@ -40,10 +40,8 @@ export class ModalComponent {
     console.log('Submitted Form');
     console.log(this.taskForm.value);
     this.taskdb.addTask(this.taskForm.value);
-    this.taskdb.tasks$.subscribe(value=>{
-      console.log(value)
-    });
     this.taskForm.reset();
+    this.triggerModal();
   }
 
 }
