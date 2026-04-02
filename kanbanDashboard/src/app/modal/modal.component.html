@@ -5,14 +5,31 @@
             <div class="titletext">
                 <label for="titleid">Title</label>
                 <input type="text" id="titleid" formControlName="title">
-                <span style="color: red;" *ngIf="taskForm.get('title')?.invalid || taskForm.get('title')?.touched || taskForm.get('title')?.hasError('minlength')">Title needed</span>
+                <span style="color: red;" *ngIf="taskForm.get('title')?.invalid && taskForm.get('title')?.touched && taskForm.get('title')?.hasError('minlength')">Title required</span>
             </div>
             <div class="desctext">
                 <label for="desc">Description</label>
                 <input type="text" id="desc" formControlName="desc">
-                <span style="color: red;" *ngIf="taskForm.get('desc')?.invalid && taskForm.get('desc')?.touched">Title needed</span>
+                <span style="color: red;" *ngIf="taskForm.get('desc')?.invalid && taskForm.get('desc')?.touched">Description required</span>
             </div>
-            <button type="submit">Add</button>
+            <div class="status-options">
+                <label for="status">Status</label>
+                <div class="options">
+                    <div class="status-radio">
+                        <input type="radio" name="status" id="todo" value="todo" formControlName="status">
+                        <label for="todo">Todo</label>
+                    </div>
+                    <div class="status-radio">
+                        <input type="radio" name="status" id="doing" value="doing" formControlName="status">
+                        <label for="doing">Doing</label>
+                    </div>
+                    <div class="status-radio">
+                        <input type="radio" name="status" id="done" value="done" formControlName="status">
+                        <label for="done">Done</label>
+                    </div>
+                </div>
+            </div>
+            <button [disabled]="!taskForm.valid" type="submit">Add</button>
         </form>
     </div>
 </div>

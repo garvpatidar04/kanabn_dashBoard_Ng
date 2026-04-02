@@ -14,7 +14,8 @@ export class ModalComponent {
 
   taskForm = new FormGroup({
     title : new FormControl('', [Validators.required, Validators.minLength(2)]),
-    desc : new FormControl('', [Validators.required])
+    desc : new FormControl('', [Validators.required]),
+    status : new FormControl('', [Validators.required]),
   });
 
   constructor(private modalservice: ModalserviceService, private taskdb: TaskdbService){ 

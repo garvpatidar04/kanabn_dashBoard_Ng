@@ -28,7 +28,7 @@
 .titletext, .desctext{
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     width: 100%;
     gap: 4px;
 }
@@ -47,8 +47,28 @@ button{
     font-weight: 600;
     box-shadow: 0px 2px 4px #000;
 }
+button:hover{
+    transform: scale(1.02);
+}
 button:active{
     box-shadow: 0 0 0 #fff;
     background-color: #de902b;
     transform: translateY(2px);
+}
+button:disabled{
+    box-shadow: 0px 2px 4px #000;
+    background-color: #de912b84;
+    transform: translateY(0);
+}
+.status-options{
+    display: flex;
+    flex-direction: column;
+}
+.options{
+    padding: 4px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
