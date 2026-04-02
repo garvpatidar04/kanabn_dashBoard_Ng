@@ -1,4 +1,9 @@
-<div class="taskwrapper" *ngIf="title">
-    <h3>{{title | uppercase}}</h3>
-    <p>{{desc}}</p>
+<div class="taskwrapper">
+    <div class="content">
+        <h3>{{taskData?.title}}</h3>
+        <p>{{taskData?.desc}}</p>
+    </div>
+    <div class="badge">
+        <small>{{taskData?.status}}</small>
+    </div>
 </div>

@@ -10,13 +10,14 @@
 }
 .wrapper-column{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 0.2em 0.9em;
     flex-grow: 1;
-    gap: 1em;
+    /* gap: 2.5em; */
 }
 app-column{
-   flex-grow: 1;
+   flex: 1; /* flex-grow and flex-basis*/
+   max-width: calc((100% - 8em) / 3);
 }
 button{
     background-color: #d79237;

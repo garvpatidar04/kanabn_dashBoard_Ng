@@ -6,9 +6,9 @@
     </div>
   </div>
   <div class="wrapper-column">
-    <app-column heading="Todo"></app-column>
-    <app-column heading="Doing"></app-column>
-    <app-column heading="Done"></app-column>
+    <app-column heading="Todo" [tasks]="filteredTask('todo')"></app-column>
+    <app-column heading="Doing" [tasks]="filteredTask('doing')"></app-column>
+    <app-column heading="Done" [tasks]="filteredTask('done')"></app-column>
   </div>
   <app-modal></app-modal>
 </div>

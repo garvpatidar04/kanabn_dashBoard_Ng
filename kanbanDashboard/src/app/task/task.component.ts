@@ -7,8 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class TaskComponent {
 
-  @Input() title: string = '';
-  @Input() desc: string = '';
+  @Input() taskData : any; 
 
 
 
