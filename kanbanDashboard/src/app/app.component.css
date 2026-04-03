@@ -20,17 +20,17 @@ app-column{
    max-width: calc((100% - 8em) / 3);
 }
 button{
-    background-color: #d79237;
+    background-color: var(--btn-bg);;
     padding: 12px 8px;
     border-radius: 4px;
     border: none;
-    color: white;
+    color: var(--btn-text);
     font-weight: 600;
-    box-shadow: 0px 2px 4px #000;
+    box-shadow: 0px 2px 4px var(--btn-shadow);
 }
 button:active{
-    box-shadow: 0 0 0 #fff;
-    background-color: #de902b;
+    box-shadow: 0 0 0 transparent;
+    background-color: var(--btn-hover);
     transform: translateY(2px);
 }
 app-modal{

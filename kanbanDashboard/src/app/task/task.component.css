@@ -1,22 +1,56 @@
 .taskwrapper{
-    background-color: #fff;
+background-color: var(--bg-card);
     margin: 6px 8px;
-    border: 2px solid #dbdfe28a;
+    border: 2px solid var(--border-card);
     border-radius: 16px;
-    padding: 8px 12px;
+    padding: 16px 12px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* align-items: start; */
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
 }
 .content{
-    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+.content h3{
+    color: var(--text-main);
+}
+.content p{
+    text-align: justify;
+    color: var(--text-muted);
+    font-size: 17px;
+    line-height: 22px;  
 }
 .taskwrapper small{
-    color: #22c55c;
+    color: var(--badge-text);
     padding: 4px 8px;
-    background-color: #eafff5;
+    background-color: var(--badge-bg);
     border-radius: 16px;
     font-weight: 600;
     font-size: 0.8em;
+}
+.badge-delete{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.delete{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.delete:active{
+    transform: scale(0.9);
+}
+.delete svg{
+    fill: var(--icon-delete);
+    width: 24px;
+    height: 24px;
 }

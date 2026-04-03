@@ -1,5 +1,5 @@
 .column{
-    background-color: #f1f5f9;
+    background-color: var(--bg-column);
     height: 99%;
     text-align: center;
     border-radius: 16px;
@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    border: 1px solid #dbdfe2;
+    border: 1px solid var(--border-column);
 }
 .column-body{
     flex-grow: 1;

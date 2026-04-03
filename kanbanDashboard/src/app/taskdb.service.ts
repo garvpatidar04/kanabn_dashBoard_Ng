@@ -13,26 +13,12 @@ interface Task{
 
 export class TaskdbService {
   private tasks: Task[] = [ 
+    // sample for testing 
     { 
-    title: "This is title", 
-    desc: "this is how task will look",
-    status: 'doing'
-    },
-    { 
-    title: "This is title", 
-    desc: "this is how task will look",
+    title: "Any", 
+    desc: "delete and start you own task",
     status: 'todo'
-    },
-    { 
-    title: "This is title", 
-    desc: "this is how task will look",
-    status: 'doing'
-    },
-    { 
-    title: "This is title", 
-    desc: "this is how task will look",
-    status: 'done'
-    },
+    }
   ];
   private taskData = new BehaviorSubject<any[]>(this.tasks);
   tasks$ = this.taskData.asObservable();
@@ -41,5 +27,13 @@ export class TaskdbService {
     this.tasks = [...this.tasks, newTask];
     this.taskData.next(this.tasks);
   }
+
+  deleteTasks(deleteTask: any){
+    console.log(deleteTask);
+    this.tasks = this.tasks.filter( t => t.title !== deleteTask.title)
+    console.log(this.tasks);
+    this.taskData.next(this.tasks);
+  }
+
 
 }

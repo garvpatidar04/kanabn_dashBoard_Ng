@@ -4,8 +4,38 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+:root {
+    /* Backgrounds */
+    --bg-main: #fefeff;
+    --bg-column: #f6f7f6;
+    --bg-card: #feffff;
+    --bg-modal: rgba(212, 170, 170, 0.658);
+    --bg-overlay: #0000003f;
+
+    /* Borders */
+    --border-column: #dbdfe270;
+    --border-card: #dbdfe28a;
+
+    /* Text */
+    --text-main: #000000;
+    --text-muted: #3a3a3aa5;
+
+    /* Buttons */
+    --btn-bg: #d79237;
+    --btn-hover: #de902b;
+    --btn-disabled: #de912b84;
+    --btn-text: #ffffff;
+    --btn-shadow: #000000;
+
+    /* Status Badges & Icons */
+    --badge-bg: #eafff5;
+    --badge-text: #22c55c;
+    --icon-delete: #ef4444;
+}
+
 body{
     height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f9fbfc;
+    background-color: var(--bg-main);
 }

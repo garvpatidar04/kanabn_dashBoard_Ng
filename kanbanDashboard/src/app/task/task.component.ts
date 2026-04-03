@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { TaskdbService } from '../taskdb.service';
 
 @Component({
   selector: 'app-task',
@@ -9,6 +10,11 @@ export class TaskComponent {
 
   @Input() taskData : any; 
 
+  constructor(private taskdbService: TaskdbService){}
 
+  deleteT(){
+    console.log(this.taskData);
+    this.taskdbService.deleteTasks(this.taskData);
+  }
 
 }

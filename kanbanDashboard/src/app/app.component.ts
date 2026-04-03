@@ -15,7 +15,10 @@ interface Task{
 })
 export class AppComponent {
   title = 'kanbanDashboard';
-  tasks: Task[] = [];
+  todo: Task[] = [];
+  doing: Task[] = [];
+  done: Task[] = [];
+
 
 
   constructor(private modalservice: ModalserviceService, private taskdb: TaskdbService){}
@@ -30,12 +33,9 @@ export class AppComponent {
 
   loadTask(){
     this.taskdb.tasks$.subscribe(value=>{
-      this.tasks = value;
+      this.todo = value.filter( t => t.status === 'todo');
+      this.doing = value.filter( t => t.status === 'doing');
+      this.done = value.filter( t => t.status === 'done');
     })
   }
-
-  filteredTask(status: string): Task[]{
-    return this.tasks.filter( t => t.status === status);
-  }
-
 }
