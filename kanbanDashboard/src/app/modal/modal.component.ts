@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ModalserviceService } from '../modalservice.service';
 
 @Component({
   selector: 'app-modal',
@@ -7,11 +8,23 @@ import { Component, Input } from '@angular/core';
 })
 export class ModalComponent {
 
-  @Input() isOpen: boolean = false;
+  constructor(private modalService: ModalserviceService){}
 
-  mousehit(): void{
-    console.log('hit');
-    // do the logic here 
+  isOpen: boolean = false;
+
+  ngOnInit(): void {
+    this.loadModal();
+  }
+
+  loadModal(): void{
+    this.modalService.watchModal.subscribe(value => {
+      this.isOpen = value;
+    });
+  }
+
+  triggerModal():void{
+    this.modalService.close();
+    this.loadModal();
   }
 
 }

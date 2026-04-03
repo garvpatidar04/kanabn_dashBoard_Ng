@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ModalserviceService } from './modalservice.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'kanbanDashboard';
+
+  constructor(private modalService: ModalserviceService){}
+
+  triggerModal(): void{
+    this.modalService.open();
+  }
 }
