@@ -8,9 +8,9 @@
                 <span style="color: red;" *ngIf="taskForm.get('title')?.invalid && taskForm.get('title')?.touched && taskForm.get('title')?.hasError('minlength')">Title required</span>
             </div>
             <div class="desctext">
-                <label for="desc">Description</label>
-                <input type="text" id="desc" formControlName="desc">
-                <span style="color: red;" *ngIf="taskForm.get('desc')?.invalid && taskForm.get('desc')?.touched">Description required</span>
+                <label for="description">Description</label>
+                <input type="text" id="description" formControlName="description">
+                <span style="color: red;" *ngIf="taskForm.get('description')?.invalid && taskForm.get('description')?.touched">Description required</span>
             </div>
             <div class="status-options">
                 <label for="status">Status</label>

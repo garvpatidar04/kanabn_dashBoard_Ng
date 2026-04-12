@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalserviceService } from './modalservice.service';
 import { TaskdbService } from './taskdb.service';
-
-interface Task{
-  title: string,
-  desc: string,
-  status: "todo" | "doing" | "done" ;
-}
+import { Task } from '../app/core/db/db'
 
 @Component({
   selector: 'app-root',
