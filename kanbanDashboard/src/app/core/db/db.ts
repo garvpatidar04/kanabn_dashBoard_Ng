@@ -1,7 +1,7 @@
 import Dexie, { type EntityTable} from 'dexie'
 
 export interface Task {
-    id: number,
+    id?: number,
     title: string,
     description: string,
     status: 'todo' | 'doing' | 'done',

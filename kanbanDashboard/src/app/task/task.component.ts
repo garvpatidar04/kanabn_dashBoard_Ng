@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { TaskdbService } from '../taskdb.service';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-task',
@@ -12,9 +13,12 @@ export class TaskComponent {
 
   constructor(private taskdbService: TaskdbService){}
 
-  deleteT(){
-    console.log(this.taskData);
-    this.taskdbService.deleteTasks(this.taskData);
+  deleteT(id: number){
+    this.taskdbService.deleteTasks(id);
+  }
+
+  editT(id: number){
+    // pass   
   }
 
 }

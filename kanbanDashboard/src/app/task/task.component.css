@@ -54,3 +54,16 @@ background-color: var(--bg-card);
     width: 24px;
     height: 24px;
 }
+.edit{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.edit svg{
+    fill: var(--btn-shadow);
+    width: 24px;
+    height: 24px;
+}

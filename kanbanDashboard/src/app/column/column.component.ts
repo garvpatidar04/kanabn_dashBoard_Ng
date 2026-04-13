@@ -1,5 +1,6 @@
 import { Component, Input} from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { TaskdbService } from '../taskdb.service';
 
 @Component({
   selector: 'app-column',
@@ -10,7 +11,9 @@ export class ColumnComponent {
 
   @Input() heading: string = '';
   @Input() tasks: any[] = [];
-  @Input() status: string = '';
+  @Input() status: string = "";
+
+  constructor( private taskdbService: TaskdbService){}
 
   drop(event: CdkDragDrop<string[]>){
     if(event.previousContainer === event.container){
@@ -26,9 +29,10 @@ export class ColumnComponent {
         event.previousIndex,
         event.currentIndex
       )
+      const movedTask: any = event.container.data[event.currentIndex];
+      movedTask.status = this.status;
+      this.taskdbService.updateTasks(movedTask.id, this.status);
     }
-    const movedTask: any = event.container.data[event.currentIndex];
-    movedTask.status = this.status;
   }
 
 }

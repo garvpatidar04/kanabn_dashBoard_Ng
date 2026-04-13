@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalserviceService } from '../modalservice.service';
 import { TaskdbService } from '../taskdb.service';
+import { Task } from '../core/db/db'
 
 @Component({
   selector: 'app-modal',
@@ -37,10 +38,19 @@ export class ModalComponent {
     this.loadModal();
   }
 
+  addTaskS(){
+    const formvalue = this.taskForm.value;
+    const newTask: Task = {
+      title: formvalue.title ?? '',
+      description: formvalue.description ?? '',
+      status: (formvalue.status as 'todo' | 'doing' | 'done') ?? 'todo',
+      createdAt: Date.now()
+    }
+    this.taskdb.addTask(newTask);
+  }
+
   onSubmit():void{
-    console.log('Submitted Form');
-    console.log(this.taskForm.value);
-    this.taskdb.addTask(this.taskForm.value);
+    this.addTaskS();
     this.taskForm.reset();
     this.triggerModal();
   }
