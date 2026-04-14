@@ -26,10 +26,9 @@ export class TaskdbService {
     }
   }
 
-  async updateCompleteTask(id: number | undefined, task: any){
-    if(id){
-      await db.tasks.update( id, task);
-    }
+  async updateCompleteTask(id: number | null, task: any){
+    const taskid = id ?? undefined;
+    await db.tasks.update(taskid, task);
   }
 
 }

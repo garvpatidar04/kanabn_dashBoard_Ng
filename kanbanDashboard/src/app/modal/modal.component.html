@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <button [disabled]="!taskForm.valid" type="submit">Add</button>
+            <button [disabled]="!taskForm.valid" type="submit">{{ isEdit ? 'Save' : 'Add' }}</button>
         </form>
     </div>
 </div>

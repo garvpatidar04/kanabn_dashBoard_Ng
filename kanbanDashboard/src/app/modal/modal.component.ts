@@ -12,6 +12,8 @@ import { Task } from '../core/db/db'
 export class ModalComponent {
 
   isOpen: boolean = false;
+  isEdit: boolean = false;
+  id: number | null = null;
 
   taskForm = new FormGroup({
     title : new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -20,19 +22,27 @@ export class ModalComponent {
   });
 
   constructor(private modalservice: ModalserviceService, private taskdb: TaskdbService){ 
-
+    modalservice.editUse.subscribe(value => {
+      if(value){
+        this.taskForm.patchValue(value);
+        this.id = value.id;
+        this.isEdit = true;
+      }else{
+        this.isEdit = false;
+      }
+    })
   }
 
   ngOnInit(){
     this.loadModal();
   }
-
+  
   loadModal(){
     this.modalservice.modalUse.subscribe(value=>{
       this.isOpen = value;
     })
   }
-
+  
   triggerModal(){
     this.modalservice.closeModal();
     this.loadModal();
@@ -46,7 +56,11 @@ export class ModalComponent {
       status: (formvalue.status as 'todo' | 'doing' | 'done') ?? 'todo',
       createdAt: Date.now()
     }
-    this.taskdb.addTask(newTask);
+    if(this.isEdit){
+      this.taskdb.updateCompleteTask(this.id, newTask)
+    }else{
+      this.taskdb.addTask(newTask);
+    }
   }
 
   onSubmit():void{
