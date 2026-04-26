@@ -14,8 +14,8 @@ export class TaskComponent {
 
   constructor(private taskdbService: TaskdbService, private modalservice: ModalserviceService){}
 
-  deleteT(id: number){
-    this.taskdbService.deleteTasks(id);
+  deleteT(_id: string){
+    this.taskdbService.deleteTasks(_id);
   }
 
   editT(task : any){

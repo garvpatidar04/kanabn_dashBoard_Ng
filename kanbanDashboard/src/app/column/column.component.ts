@@ -31,7 +31,7 @@ export class ColumnComponent {
       )
       const movedTask: any = event.container.data[event.currentIndex];
       movedTask.status = this.status;
-      this.taskdbService.updateTasks(movedTask.id, this.status);
+      this.taskdbService.updateTasks(movedTask._id, this.status);
     }
   }
 

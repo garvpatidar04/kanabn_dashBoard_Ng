@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, from, Observable } from 'rxjs';
 import { liveQuery } from 'dexie';
-import { db, Task } from '../app/core/db/db'
+import { db, Task, SyncDB } from '../app/core/db/db'
+import { v4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -13,22 +14,63 @@ export class TaskdbService {
 
   async addTask(newTask: Task) {
     await db.tasks.add(newTask);
+    const syncTask: SyncDB = {
+      syncID: v4(),
+      action: 'create',
+      payload: newTask,
+      status: 'pending',
+      retryCount: 0,
+      createdAt: Date.now()
+    }
+    await db.syncQueue.add(syncTask)
   }
 
-  async deleteTasks(taskId: number) {
+  async deleteTasks(taskId: string) {
     await db.tasks.delete(taskId);
+    const syncTask: SyncDB = {
+      syncID: v4(),
+      action: 'delete',
+      payload: { _id: taskId } as Task,
+      status: 'pending',
+      retryCount: 0,
+      createdAt: Date.now()
+    }
+    await db.syncQueue.add(syncTask)
   }
 
-  async updateTasks(id: number | undefined, status: any){
+  async updateTasks(_id: string | undefined, status: any){
     const newStatus: 'todo' | 'doing' | 'done' = status
-    if(id){
-      await db.tasks.update( id, { status: newStatus});
+    if(_id){
+      await db.tasks.update( _id, { status: newStatus});
+      const updatedTask = await db.tasks.get(_id);
+      if(updatedTask){
+        const syncTask: SyncDB = {
+          syncID: v4(),
+          action: 'update',
+          payload: updatedTask,
+          status: 'pending',
+          retryCount: 0,
+          createdAt: Date.now()
+        }
+        await db.syncQueue.add(syncTask)
+      }
     }
   }
 
-  async updateCompleteTask(id: number | null, task: any){
-    const taskid = id ?? undefined;
-    await db.tasks.update(taskid, task);
+  async updateCompleteTask(task: any){
+    await db.tasks.update(task._id, task);
+    const updatedTask = await db.tasks.get(task._id);
+      if(updatedTask){
+        const syncTask: SyncDB = {
+          syncID: v4(),
+          action: 'update',
+          payload: updatedTask,
+          status: 'pending',
+          retryCount: 0,
+          createdAt: Date.now()
+        }
+        await db.syncQueue.add(syncTask)
+      }
   }
 
 }

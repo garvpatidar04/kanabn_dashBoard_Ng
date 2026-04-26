@@ -3,6 +3,9 @@ import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angula
 import { ModalserviceService } from '../modalservice.service';
 import { TaskdbService } from '../taskdb.service';
 import { Task } from '../core/db/db'
+import { v4 as uuidv4 } from 'uuid';
+import { NIL as NIL_UUID } from 'uuid';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-modal',
@@ -13,7 +16,8 @@ export class ModalComponent {
 
   isOpen: boolean = false;
   isEdit: boolean = false;
-  id: number | null = null;
+  _id: string = NIL_UUID;
+  timestamp: number = Date.now();
 
   taskForm = new FormGroup({
     title : new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -25,7 +29,8 @@ export class ModalComponent {
     modalservice.editUse.subscribe(value => {
       if(value){
         this.taskForm.patchValue(value);
-        this.id = value.id;
+        this._id = value._id;
+        this.timestamp = value.createdAt;
         this.isEdit = true;
       }else{
         this.isEdit = false;
@@ -50,15 +55,23 @@ export class ModalComponent {
 
   addTaskS(){
     const formvalue = this.taskForm.value;
-    const newTask: Task = {
-      title: formvalue.title ?? '',
-      description: formvalue.description ?? '',
-      status: (formvalue.status as 'todo' | 'doing' | 'done') ?? 'todo',
-      createdAt: Date.now()
-    }
     if(this.isEdit){
-      this.taskdb.updateCompleteTask(this.id, newTask)
+      const newTask: Task = {
+        _id: this._id,
+        title: formvalue.title ?? '',
+        description: formvalue.description ?? '',
+        status: (formvalue.status as 'todo' | 'doing' | 'done') ?? 'todo',
+        createdAt: this.timestamp
+      }
+      this.taskdb.updateCompleteTask(newTask)
     }else{
+      const newTask: Task = {
+        _id: uuidv4(),
+        title: formvalue.title ?? '',
+        description: formvalue.description ?? '',
+        status: (formvalue.status as 'todo' | 'doing' | 'done') ?? 'todo',
+        createdAt: Date.now()
+      }
       this.taskdb.addTask(newTask);
     }
   }
